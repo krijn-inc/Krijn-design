@@ -1,115 +1,42 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from 'next/head';
+import { Inter } from 'next/font/google';
+import styles from '@/styles/Home.module.css';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   return (
     <>
       <Head>
         <title>Krijn-design</title>
-
         <meta name="description" content="Revolutionize your web design process with our AI-powered tool. Simply input a prompt, and instantly receive custom HTML & CSS code for unique, stunning designs." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
+      <main className={`${styles.container} ${inter.className}`}>
+        <section className={`${styles.intro}`}>
+          <h1 className={`${styles.heading}`}>
+            <span>Design websites faster.</span>
+            <span>Design websites smarter.</span>
+          </h1>
+          <p className={`${styles.paragraph}`}>Transform your web design experience with a single prompt: unleash the power of AI to effortlessly generate bespoke HTML & CSS code for captivating, innovative designs that bring your visions to life.</p>
+        </section>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
+        <form className={`${styles.form}`}>
+          <input className={`${styles.input}`} type="text" placeholder="Create a modern and visually appealing e-commerce website design for a sustainable fashion brand"></input>
+          <button className={`${styles.button}`} type="submit">Make magic happen</button>
+        </form>
 
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
+        <figure className={`${styles.figure}`}>
+          <blockquote className={`${styles.quote}`} cite="https://sjorsvanholst.nl">
+            <p>Krijn-design has completely transformed my design workflow. Within minutes, I was able to generate a stunning, unique website layout just by providing a simple prompt. It's a game-changer for both experienced designers and newcomers alike!</p>
+          </blockquote>
+          <figcaption className={`${styles.figcaption}`}>Sjors van Holst</figcaption>
+        </figure>
 
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+        <footer className={`${styles.footer}`}>
+          A <a href="#">Krijn .Inc</a> miracle
+        </footer>
       </main>
     </>
   )
