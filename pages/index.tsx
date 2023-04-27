@@ -29,7 +29,7 @@ export default function Home() {
 
         <figure className={`${styles.figure}`}>
           <blockquote className={`${styles.quote}`} cite="https://sjorsvanholst.nl">
-            <p>Krijn-design has completely transformed my design workflow. Within minutes, I was able to generate a stunning, unique website layout just by providing a simple prompt. It's a game-changer for both experienced designers and newcomers alike!</p>
+            <p>Krijn-design has completely transformed my design workflow. Within minutes, I was able to generate a stunning, unique website layout just by providing a simple prompt. It&apos;s a game-changer for both experienced designers and newcomers alike!</p>
           </blockquote>
           <figcaption className={`${styles.figcaption}`}>Sjors van Holst</figcaption>
         </figure>
