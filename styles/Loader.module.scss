@@ -1,0 +1,64 @@
+.loader {
+  top: 50%;
+  gap: 0.5rem;
+  left: 50%;
+  color: #fff;
+  width: 100%;
+  opacity: 1 !important;
+  display: flex;
+  position: absolute;
+  transform: translate(-50%, -50%);
+
+  font-size: 1rem;
+  font-weight: 400;
+  align-items: center;
+  flex-direction: column;
+  list-style-type: none;
+
+  li {
+    opacity: 0.75;
+    position: absolute;
+    font-size: 1rem;
+    transition: all 1s;
+
+    &.side {
+      pointer-events: none;
+    }
+
+    &.middle {
+      opacity: 1;
+      font-size: 1.25rem;
+      margin-top: -0.2rem;
+
+      &::after {
+        content: "\2026";
+        animation: ellipsis-animation steps(1, end) 2s infinite;
+      }
+    }
+
+    &.invisible {
+      opacity: 0;
+      font-size: 0.75rem;
+      transition: all 1s;
+      pointer-events: none;
+    }
+  }
+}
+
+@keyframes ellipsis-animation {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  25% {
+    clip-path: inset(0 66.6% 0 0);
+  }
+
+  50% {
+    clip-path: inset(0 33.3% 0 0);
+  }
+
+  75% {
+    clip-path: inset(0 0 0 0);
+  }
+}

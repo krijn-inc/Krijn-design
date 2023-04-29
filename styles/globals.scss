@@ -55,3 +55,7 @@ main {
     padding: 8vw $gutter-xxl;
   }
 }
+
+.loading > * {
+    opacity: 0.1 !important;
+}
