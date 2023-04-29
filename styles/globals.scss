@@ -9,7 +9,7 @@ main,
   min-height: 100vh;
   margin: 0;
 
-  @include fluid-type(320px, 1200px, 16px, 24px);
+  @include fluid-type(320px, 1200px, 16px, 18px);
 }
 
 * {

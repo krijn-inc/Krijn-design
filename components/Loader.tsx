@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import styles from "@/styles/Loader.module.scss";
 import quotes from "@/data/quotes.json";
 
@@ -7,11 +8,13 @@ type LoaderState = {
 };
 
 class Loader extends Component<{}, LoaderState> {
+  private quotes = quotes as string[];
   private interval: NodeJS.Timeout | undefined;
 
   constructor(props: {}) {
     super(props);
     
+    this.quotes = quotes.sort(() => Math.random() - 0.5);
     this.state = {
       currentLineIndex: 0,
     };
@@ -20,7 +23,7 @@ class Loader extends Component<{}, LoaderState> {
   componentDidMount() {
     this.interval = setInterval(() => {
       this.setState((previousState) => ({
-        currentLineIndex: (previousState.currentLineIndex + 1) % quotes.length,
+        currentLineIndex: (previousState.currentLineIndex + 1) % this.quotes.length,
       }));
     }, 2500);
   }
@@ -34,11 +37,11 @@ class Loader extends Component<{}, LoaderState> {
   render() {
     const { currentLineIndex } = this.state;
     const linesToShow = [
-      quotes[currentLineIndex],
-      quotes[(currentLineIndex + 1) % quotes.length],
-      quotes[(currentLineIndex + 2) % quotes.length],
-      quotes[(currentLineIndex + 3) % quotes.length],
-      quotes[(currentLineIndex + 4) % quotes.length],
+      this.quotes[currentLineIndex],
+      this.quotes[(currentLineIndex + 1) % this.quotes.length],
+      this.quotes[(currentLineIndex + 2) % this.quotes.length],
+      this.quotes[(currentLineIndex + 3) % this.quotes.length],
+      this.quotes[(currentLineIndex + 4) % this.quotes.length],
     ];
 
     return (
