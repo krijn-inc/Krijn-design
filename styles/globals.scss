@@ -1,0 +1,57 @@
+@import "~@/styles/variables.scss";
+@import "~@/styles/mixins.scss";
+
+html,
+body,
+main,
+#__next {
+  min-width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+
+  @include fluid-type(320px, 1200px, 16px, 24px);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto", serif;
+  font-weight: 500;
+}
+
+main {
+  gap: 2rem;
+  display: flex;
+  padding: 8vw $gutter-sm;
+  background: #855ef0;
+
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  flex-direction: column;
+  justify-content: space-around;
+  
+  @include md {
+    padding: 8vw $gutter-md;
+  }
+  
+  @include lg {
+    padding: 8vw $gutter-lg;
+  }
+  
+  @include xl {
+    padding: 8vw $gutter-xl;
+  }
+  
+  @include xxl {
+    padding: 8vw $gutter-xxl;
+  }
+}
