@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-
 import { Configuration, OpenAIApi } from "openai";
 import { getAuth } from "@clerk/nextjs/server";
 
