@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import styles from "@/styles/Embedded.module.scss";
 
@@ -7,7 +7,7 @@ interface EmbeddedProps {
   css: string;
 }
 
-const Embedded: React.FC<EmbeddedProps> = ({ html, css }) => {
+export function Embedded({ html, css }: EmbeddedProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -39,6 +39,4 @@ const Embedded: React.FC<EmbeddedProps> = ({ html, css }) => {
       frameBorder="0"
     />
   );
-};
-
-export default Embedded;
+}

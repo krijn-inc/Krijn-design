@@ -1,71 +1,40 @@
-import React, { Component } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "@/styles/Loader.module.scss";
 import quotes from "@/data/quotes.json";
 
-type LoaderState = {
-  currentLineIndex: number;
-};
+export function Loader() {
+  const [currentLineIndex, setCurrentLineIndex] = useState(0);
 
-class Loader extends Component<{}, LoaderState> {
-  private quotes = quotes as string[];
-  private interval: NodeJS.Timeout | undefined;
+  const linesToShow = [
+    quotes[currentLineIndex],
+    quotes[(currentLineIndex + 1) % quotes.length],
+    quotes[(currentLineIndex + 2) % quotes.length],
+    quotes[(currentLineIndex + 3) % quotes.length],
+    quotes[(currentLineIndex + 4) % quotes.length],
+  ];
 
-  constructor(props: {}) {
-    super(props);
-    
-    this.quotes = quotes.sort(() => Math.random() - 0.5);
-    this.state = {
-      currentLineIndex: 0,
-    };
-  }
-
-  componentDidMount() {
-    this.interval = setInterval(() => {
-      this.setState((previousState) => ({
-        currentLineIndex: (previousState.currentLineIndex + 1) % this.quotes.length,
-      }));
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentLineIndex((previousState) => (previousState + 1) % quotes.length);
     }, 2500);
-  }
 
-  componentWillUnmount() {
-    if (this.interval !== null) {
-      clearInterval(this.interval);
-    }
-  }
+    return () => clearInterval(interval);
+  }, [setCurrentLineIndex]);
 
-  render() {
-    const { currentLineIndex } = this.state;
-    const linesToShow = [
-      this.quotes[currentLineIndex],
-      this.quotes[(currentLineIndex + 1) % this.quotes.length],
-      this.quotes[(currentLineIndex + 2) % this.quotes.length],
-      this.quotes[(currentLineIndex + 3) % this.quotes.length],
-      this.quotes[(currentLineIndex + 4) % this.quotes.length],
-    ];
-
-    return (
-      <ul className={`${styles.loader}`}>
-        {linesToShow.map((quote, index) => (
-          <li
-            key={quote}
-            className={
-              index === 2
-                ? styles.middle
-                : index === 0 || index === 4
-                ? styles.invisible
-                : styles.side
-            }
-            style={{
-              transform: `translateY(${(index - 2) * 1.75}rem)`,
-            }}
-          >
-            {quote}
-          </li>
-        ))}
-      </ul>
-    );
-  }
+  return (
+    <ul className={styles.loader}>
+      {linesToShow.map((quote, index) => (
+        <li
+          key={quote}
+          className={index === 2 ? styles.middle : index === 0 || index === 4 ? styles.invisible : styles.side}
+          style={{
+            transform: `translateY(${(index - 2) * 1.75}rem)`,
+          }}
+        >
+          {quote}
+        </li>
+      ))}
+    </ul>
+  );
 }
-
-export default Loader;
