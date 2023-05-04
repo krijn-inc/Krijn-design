@@ -1,3 +1,5 @@
+"use client";
+
 import Head from "next/head";
 import { Loader } from "@/components/Loader";
 import { Embedded } from "@/components/Embedded";
