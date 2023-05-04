@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Configuration, OpenAIApi } from "openai";
 import { getAuth } from "@clerk/nextjs/server";
 
-const config = new Configuration({ apiKey: process.env.OPENAI_KEY });
+const config = new Configuration({ apiKey: process.env.OPENAI_SECRET_KEY });
 const openAI = new OpenAIApi(config);
 
 type Data = {
