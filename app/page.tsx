@@ -1,33 +1,29 @@
-"use client";
+'use client'
 
 import Head from "next/head";
+
 import { Loader } from "@/components/Loader";
+import { useState } from "react";
 import { Embedded } from "@/components/Embedded";
-import { FormEvent, useState } from "react";
+import { generateDesign } from "@/lib/openai";
+
 import styles from "@/styles/Home.module.scss";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
-  const [prompt, setPrompt] = useState("");
   const [html, setHtml] = useState("");
   const [css, setCss] = useState("");
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  async function formSubmitted(form: FormData) {
+    setLoading(true);
 
-    try {
-      setLoading(true);
+    const designResponse = await generateDesign(form);
+    
+    setCss(designResponse.styling)
+    setHtml(designResponse.markup);
 
-      const response = await fetch(`/api/design?prompt=${prompt}`);
-      const parsed = await response.json();
-
-      setHtml(parsed.markup);
-      setCss(parsed.styling);
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
-  };
+    setLoading(false);  
+  }
 
   return (
     <>
@@ -57,12 +53,11 @@ export default function Home() {
         )}
 
         {!html && !css && (
-          <form className={styles.form} onSubmit={handleSubmit}>
+          <form className={styles.form} action={formSubmitted}>
             <input
               className={styles.input}
               name="prompt"
               type="text"
-              onChange={(e) => setPrompt(e.currentTarget.value)}
               placeholder="Create a modern and visually appealing e-commerce website design for a sustainable fashion brand"
             />
             <button className={styles.button} name="submit" type="submit">
