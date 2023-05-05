@@ -1,29 +1,36 @@
-'use client'
+"use client";
 
 import Head from "next/head";
 
 import { Loader } from "@/components/Loader";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Embedded } from "@/components/Embedded";
-import { generateDesign } from "@/lib/openai";
 
 import styles from "@/styles/Home.module.scss";
+import { generateDesign } from "@/lib/openai";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
   const [html, setHtml] = useState("");
   const [css, setCss] = useState("");
 
-  async function formSubmitted(form: FormData) {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setLoading(true);
 
-    const designResponse = await generateDesign(form);
-    
-    setCss(designResponse.styling)
+    const prompt = event.currentTarget.elements.namedItem("prompt");
+
+    if (!(prompt instanceof HTMLInputElement)) {
+      return;
+    }
+
+    const designResponse = await generateDesign(prompt.value);
+
+    setCss(designResponse.styling);
     setHtml(designResponse.markup);
 
-    setLoading(false);  
-  }
+    setLoading(false);
+  };
 
   return (
     <>
@@ -53,7 +60,7 @@ export default function Home() {
         )}
 
         {!html && !css && (
-          <form className={styles.form} action={formSubmitted}>
+          <form className={styles.form} onSubmit={onSubmit}>
             <input
               className={styles.input}
               name="prompt"
