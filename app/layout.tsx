@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/globals.scss";
 
 import { PropsWithChildren } from "react";
 import { ClerkProvider } from "@clerk/nextjs/app-beta";
@@ -23,9 +24,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
       </head>
       <body>
         <PlausibleProvider domain={plausibleDomain} customDomain={plausibleCustom} selfHosted={plausibleHosted}>
-          <ClerkProvider>
+          {/* <ClerkProvider> */}
             <ThemeProvider>{children}</ThemeProvider>
-          </ClerkProvider>
+          {/* </ClerkProvider> */}
         </PlausibleProvider>
       </body>
     </html>
