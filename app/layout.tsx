@@ -23,9 +23,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
       </head>
       <body>
         <PlausibleProvider domain={plausibleDomain} customDomain={plausibleCustom} selfHosted={plausibleHosted}>
-          {/* <ClerkProvider> */}
+          <ClerkProvider>
             <ThemeProvider>{children}</ThemeProvider>
-          {/* </ClerkProvider> */}
+          </ClerkProvider>
         </PlausibleProvider>
       </body>
     </html>
