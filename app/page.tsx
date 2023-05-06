@@ -14,20 +14,14 @@ export default function Home() {
   const [html, setHtml] = useState("");
   const [css, setCss] = useState("");
 
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const startDesign = async (event: FormData) => {
     setLoading(true);
 
-    const prompt = event.currentTarget.elements.namedItem("prompt");
+    const prompt = event.get("prompt") as string;
+    const design = await generateDesign(prompt);
 
-    if (!(prompt instanceof HTMLInputElement)) {
-      return;
-    }
-
-    const designResponse = await generateDesign(prompt.value);
-
-    setCss(designResponse.styling);
-    setHtml(designResponse.markup);
+    setCss(design.styling);
+    setHtml(design.markup);
 
     setLoading(false);
   };
@@ -60,7 +54,7 @@ export default function Home() {
         )}
 
         {!html && !css && (
-          <form className={styles.form} onSubmit={onSubmit}>
+          <form className={styles.form} action={startDesign}>
             <input
               className={styles.input}
               name="prompt"
