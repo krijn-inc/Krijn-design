@@ -15,7 +15,7 @@ export default function Home() {
   const [css, setCss] = useState("");
 
   const startDesign = async (event: FormData) => {
-    setLoading(true);
+    setTimeout(() => setLoading(true), 0);
 
     const prompt = event.get("prompt") as string;
     const design = await generateDesign(prompt);
